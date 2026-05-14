@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificado - El Legado de Fibonacci</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            padding: 20px;
+        }
+
+        .certificate-container {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .certificate-border {
+            border: 10px double #0066cc;
+            margin: 20px;
+            padding: 30px;
+            border-radius: 15px;
+            background: #fffef7;
+        }
+
+        .institute {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .institute h2 {
+            color: #003366;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #ffd700;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .certifica {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin: 20px 0;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .student-name {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .student-name input {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            border-bottom: 2px dashed #003366;
+            width: 80%;
+            padding: 10px;
+            font-family: 'Georgia', serif;
+            background: transparent;
+        }
+
+        .student-name input:focus {
+            outline: none;
+            border-bottom-color: #ffd700;
+        }
+
+        .achievements {
+            background: #f0f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .achievements h3 {
+            color: #003366;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .achievements ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .achievements li {
+            padding: 8px;
+            font-size: 0.95rem;
+        }
+
+        .achievements li::before {
+            content: "✓ ";
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .codigo-maestro {
+            text-align: center;
+            background: #003366;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .codigo-maestro span {
+            font-size: 2rem;
+            font-weight: bold;
+            background: #ffd700;
+            color: #003366;
+            padding: 5px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .rango {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .rango label {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        .rango input {
+            margin-right: 5px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .firma {
+            text-align: center;
+        }
+
+        .firma .linea {
+            width: 200px;
+            border-top: 1px solid #000;
+            margin: 10px 0;
+        }
+
+        .firma input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            width: 200px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #004499;
+            transform: scale(1.02);
+        }
+
+        .btn-pdf {
+            background: #28a745;
+        }
+
+        .btn-pdf:hover {
+            background: #1e7e34;
+        }
+
+        .legado {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .buttons {
+                display: none;
+            }
+            .certificate-container {
+                box-shadow: none;
+            }
+            .student-name input {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container" id="certificate">
+        <div class="certificate-border">
+            <div class="institute">
+                <h2>INSTITUTO DE PATRONES OCULTOS</h2>
+            </div>
+
+            <div class="certifica">
+                CERTIFICA
+            </div>
+
+            <div class="student-name">
+                <input type="text" id="nombreEstudiante" placeholder="Escriba el nombre del estudiante" value="">
+            </div>
+
+            <div class="achievements">
+                <h3>📜 Logros alcanzados</h3>
+                <ul>
+                    <li>Sucesiones aritméticas (Nodo Alpha)</li>
+                    <li>Sucesiones cuadráticas (Nodo Beta)</li>
+                    <li>Patrones periódicos (Nodo Gamma)</li>
+                    <li>Números triangulares (Nodo Delta)</li>
+                    <li>Razonamiento combinatorio (Nodo Epsilon)</li>
+                    <li>Síntesis algebraica (Nodo Maestro)</li>
+                </ul>
+            </div>
+
+            <div class="codigo-maestro">
+                <p>🔐 Código maestro descifrado</p>
+                <span>210</span>
+            </div>
+
+            <div class="rango">
+                <p><strong>Rango obtenido:</strong></p>
+                <label>
+                    <input type="radio" name="rango" value="Inicial"> Inicial
+                </label>
+                <label>
+                    <input type="radio" name="rango" value="Intermedio"> Intermedio
+                </label>
+                <label>
+                    <input type="radio" name="rango" value="Avanzado"> Avanzado
+                </label>
+                <label>
+                    <input type="radio" name="rango" value="Talento"> Talento
+                </label>
+            </div>
+
+            <div class="footer">
+                <div class="firma">
+                    <div class="linea"></div>
+                    <input type="text" id="firmaDocente" placeholder="Firma del docente" value="">
+                    <p>Firma del docente</p>
+                </div>
+                <div class="firma">
+                    <div class="linea"></div>
+                    <input type="text" id="fecha" placeholder="DD/MM/AAAA" value="">
+                    <p>Fecha</p>
+                </div>
+                <div class="firma">
+                    <div class="linea"></div>
+                    <p>Sello del Instituto</p>
+                </div>
+            </div>
+
+            <div class="legado">
+                <p>⭐ "El legado de Fibonacci continúa..." ⭐</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+    </div>
+
+    <script>
+        // Fecha automática
+        const hoy = new Date();
+        const fechaFormateada = hoy.toLocaleDateString('es-CR');
+        const fechaInput = document.getElementById('fecha');
+        if (fechaInput) fechaInput.value = fechaFormateada;
+
+        // Guardar en localStorage para mantener el nombre si se recarga
+        const nombreInput = document.getElementById('nombreEstudiante');
+        const savedName = localStorage.getItem('certificateName');
+        if (savedName && nombreInput) {
+            nombreInput.value = savedName;
+        }
+        if (nombreInput) {
+            nombreInput.addEventListener('change', function() {
+                localStorage.setItem('certificateName', this.value);
+            });
+        }
+    </script>
+</body>
+</html>4
